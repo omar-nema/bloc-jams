@@ -1,0 +1,149 @@
+
+html {
+    height: 100%;
+    font-size: 100%;
+}
+
+* {font-family: "Consolas"; background-color:#f9f6f6}
+/*  headers Courier Consolas Cousine*/
+h1, h2, h3, h4, h5 {
+    font-weight: 100; 
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+.maintitle {
+    height: auto; 
+    background-color: orangered;
+    color: white; 
+    display:inline-block;
+    border-width: 1px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    padding-right: 2px;
+    margin-left: 130px;
+    margin-top: 30px;
+}
+.highlight {
+    color: orangered;
+}
+
+
+
+/*  nav */
+nav {
+    display: inline-block;
+}
+
+nav a {
+    font-weight: 100;
+    align-content: right;
+    font-size: 22px;
+}
+.nav-first{
+    color: white;
+    background-color: blue;
+    width: 80px; 
+    display: inline;
+    margin-left: 350px;
+}
+.nav-second{
+    color: offwhite;
+    background-color:aquamarine;
+    width: 50px;
+}
+.nav-third {
+    width: 300px;
+    background-color: yellow;
+}
+/*  content */
+.content-first {
+    margin-left: 150px;
+    margin-top: 60px;
+    margin-bottom: 0px;
+    padding: 0px;
+        margin-bottom: 0px; padding: 0px;
+}
+.content-second {
+    margin-bottom: 0px;
+    padding: 0px;            
+    margin-top: 60px; text-align: right;
+    margin-right: 200px; 
+}
+
+/*  rectangle seperators */
+.rectclass {
+    margin-left: 0px;
+    width: 1000px;
+    display: inline-block;
+}
+.rectangle {
+    height: .5px;
+    background-color: lightgrey;
+    margin-left: 50px;
+    width: 900px;
+
+}
+.rectangle2 {
+    height: .5px;
+    background-color: aqua;
+    margin-left: 50px;
+    width: 900px;
+}
+.underline {
+    height: 3px;
+    width: 80px;
+    margin-top: 0px;
+    margin: 0px;
+    display: inline-block;
+}
+
+footer img {
+    align-content: center;
+    margin-top: 0px;
+    margin-left: 25em;
+    opacity: 0.6;
+    max-height: 100px;
+}
+
+
+footer {
+    margin-top: 200px;
+}
+
+.hero .hero-title {
+    position: absolute;
+    top: 40%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 300;
+    text-transform: 300;
+    letter-spacing: .5rem;
+    text-shadow: 1px 1px 0px rgb(58,23,63);
+    background-color: inherit;
+}
+
+.hero {
+
+    position: relative;
+    min-height: 200px;
+    width: 900px;
+    margin-left: 50px;
+    background-image: url(../assets/images/bloc_jams_bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.5;
+}
+
+
+
+
+
+

@@ -1,180 +1,90 @@
 <!DOCTYPE html>
 <html>
     <head>
+    
+        <link rel="stylesheet" type="text/css" href="styles/normalize.css">
         
-    <link
-    rel="stylesheet"   
-    href="//f.fontdeck.com/s/css/wMErktaKFxpwhaGE/Bm0r6zK5/example.com/XXXXX.css" 
-    type="text/css"
-/>    
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300" type = "text/css">
         
-        <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,500,300,600,700,100,200' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,300,600,700,100,200" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
+        
         
         <title>/music</title>        
-        <style>
-            * {font-family: "Cousine"
-            ; background-color:white
-            
-            }
-            h1, h2, h3, h4, h5 {font-family: "Consolas"}
-            
-            .bigone2 {
-                height: auto; 
-                width: 80px; 
-                background-color: red;
-                color: white; display:inline;
-                border-width: 10px;
-                border-color: aqua;
-                padding: 5px; margin-left: 130px;
-                margin-top: 50px;
-            }
-         
-            .download{
-                align-content: right;
-                font-weight: 600; 
-                color: white;
-                background-color: blue;
-                width: 80px; 
-                display: inline;
-                margin-left: 350px;
-            }
-            .about{
-                align-content: right;
-                font-weight: 600; 
-                color: offwhite;
-                background-color:aquamarine;
-                width: 50px;
-            }
-            .spacer {
-                width: 300px;
-            }
-            .question {
-                width: 300px;
-                background-color: yellow;
-                font-weight: 700;
-            }
-            nav {
-                display: inline-block;
-                font-size: 22px;
-            }
-            nav p {
-                display:inline;
-            }
-            
-            h1 {
-                padding: 100px;
-                font-size: 40px;
-            }
-            .features {
-                margin-left: 150px;
-                margin-top: 60px;
-            }
-            
-            .rectclass {
-                margin-left: 0px;
-                width: 1000px;
-                display: inline-block;
-            }
-            .rectangle {
-                height: .5px;
-                background-color: lightgrey;
-                margin-left: 50px;
-                width: 900px;
-                
-            }
-            .rectangle2 {
-                height: .5px;
-                background-color: aqua;
-                margin-left: 50px;
-                width: 900px;
-            }
-            h3 {
-               margin-bottom: 0px;
-            padding: 0px;
-            }
-            .underline {
-                height: 1px;
-                width: 80px;
-                background-color: red;
-                margin-top: 0px;
-                margin: 0px;
-                display: inline-block;
-            }
-            .underline2 {
-                height: 1px;
-                width: 80px;
-                background-color:chartreuse;
-                margin-top: 0px;
-                margin: 0px;
-                display: inline-block;
-            }
-            
-            .features2 {
-            
-                margin-top: 60px;
-               text-align: right;
-               margin-right: 200px;
-            
-            }
-            
-            .features2 p{
-                color: grey;
-            }
-            
-            
-        </style>
+
     </head>
     <body>
         <!-- how to comment -->
-        <div>
-        </div>
 
          <header>
-             <span> 
-     
-                <h1 class = 'bigone2'>bloc.jams</h1>
-                 <nav>
-                    <p class = 'spacer'>   </p>
-                    <p class = 'download'>download</p>  
-                    <p class = 'about'>about</p>
-                    <p class = 'question'>?</p>
-                </nav>
-            </span>
-             
+            <h1 class="maintitle"><span class="highlight">bloc</span>jams</h1>
+            <nav>
+              
+                <a href="#" class="nav-first">download</a>  
+                <a href="assets/images/bloc_jams_bg.png" class="nav-second">about</a>
+                <a href="#" class="nav-third">?</a>
+            </nav>
         </header>
-        
-        <section class = 'rectclass'>
-            <div class = 'rectangle'></div>
-            <div class = 'rectangle2'></div>
+                
+        <section class="rectclass">
+            <div class="rectangle"></div>
+            <div class="rectangle2"></div>
         </section>
 
-        <section class = 'features'>
-            <h3>features</h3>
-            <div class = 'underline'></div>
-            <p> mobile-enabled</p>
-            <p>  robot-friendly playlists</p>
-            <p>  live mixing</p>
-        </section>
         
+        <section class = allpoints>
         
-        <section class = 'features2'>
-            <h3>in action</h3>
-            <div class = 'underline2'></div>
-            <p> speedy ui</p>
-            <p>  robot-friendly playlists</p>
-            <p>  live mixing</p>
-        </section>
+            <div class="point">
+                <h3 class="point-title">features</h3>
+                <div class="underline" style='background-color: red'></div>
+                <p> mobile-enabled</p>
+                <p>  robot-friendly playlists</p>
+                <p>  live mixing</p>
+                <span class="ion-music-note"></span>
+            </div>
 
-    
+
+            <div class="point">
+                <h3 class="point-title">mechanics</h3>
+                <div class="underline" style='background-color: chartreuse'></div>
+                <p> speedy ui</p>
+                <p>  fine-tuned for you</p>
+                <p>  free</p>
+                <span class="ion-radio-waves"></span>           
+            </div>
+
+            <div class="point">
+                <h3 class="point-title">pricing</h3>
+                <div class="underline" style='background-color: chartreuse'></div>
+                <p> 0 $ for 3 months</p>
+                <p>  $2 / mo after</p>
+                <p>  $2 / mo after</p>                
+                <span class="ion-iphone"></span>                  
+            </div>
+
+        </section>
+              
+        
+        <footer>
+       
+         <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo" style="align-content: right" >   
+        <section class="hero">
+             <h1 class="hero-title">music up hassle down</h1>
+        </section>
+            
+        </footer>
     </body>
 </html>
 
  <!--questions
 
-does span, section, aside, etc, actually do something? or are the words simply organizational tools?
+/* what are all the defaults*/
+UNDERLINE
 
 why do classes in nav not inherit inline display?
-
 understand display inheritance
 
 
