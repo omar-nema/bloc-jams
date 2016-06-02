@@ -1,72 +1,3 @@
-/*  general styling */
-html {
-    height: 100%;
-    font-size: 100%;
-}
-
-body {
-    background-color: #f9f6f6;
-}
-
-* {font-family: "Consolas";
-    }
-/*  headers Courier Consolas Cousine*/
-h1, h2, h3, h4, h5 {
-    font-weight: 100; 
-}
-/*  header.. incl nav bar */
-header {
-    width: 85%;
-}
-header::after {
-    content: "."; 
-   visibility: hidden; 
-   display: block; 
-   height: 0; 
-   clear: both;
-  
-}
-.maintitle {
-    background-color: orangered;
-    color: white; 
-    border-width: 1px;
-    padding-top: 0px;
-    padding-bottom: 5px;
-    padding-right: 2px;
-    margin-left: 130px;
-    float: left;
-}
-.highlight {
-    color: orangered;
-    background-color: #f9f6f6;
-}
-a {
-    text-decoration: none;
-    color: black;
-}
-/*need to position in more robust way*/
-nav {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-right: px;
-    font-weight: 100;
-    font-size: 22px;
-    float: right;
-    transform: translateY(100%);
-}
-.nav-first{
-    color: white;
-    background-color: blue;
-}
-.nav-second{
-    color: offwhite;
-    background-color:aquamarine;
-}
-.nav-third {
-    background-color: yellow;
-}
-
-
 /*  rectangle separators */
 .rectclass {
     margin-left: 0px;
@@ -77,14 +8,18 @@ nav {
 .rectangle {
     height: 2px;
     background-color: lightgrey;
+/*
     margin-left: 50px;
     margin-right: 50px;    
+*/
 }
 .rectangle2 {
     height: 2px;
     background-color: aqua;
+/*
     margin-left: 50px;
     margin-right: 50px;  
+*/
 }
 
 

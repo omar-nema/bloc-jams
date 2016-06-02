@@ -5,6 +5,7 @@
     box-sizing: border-box;
 }
 
+
 @media (min-width: 640px){
     
     html {font-size: 112%;}
@@ -20,7 +21,7 @@
     .column.half {width: 50%;}
     .column.third {width: 33.3%;}
     .column.fourth {width: 25%;}
-    .column.flow-opposite {floatL right;}
+    .column.flow-opposite {float: right;}
 }
 
 @media (min-width: 1024px){
@@ -42,3 +43,121 @@
 
 .clearfix::after {
    clear: both;
+}
+    
+    
+html {
+    height: 100%;
+    font-size: 100%;
+}
+
+body {
+    background-color: #f9f6f6;
+}
+
+* {font-family: "Consolas";
+    }
+/*  headers Courier Consolas Cousine*/
+h1, h2, h3, h4, h5 {
+    font-weight: 100; 
+}
+/*  header.. incl nav bar */
+
+
+.navbar {
+/*    width: 100%;*/
+    position: relative;
+    padding: .05rem;
+    background-color: lightgrey;
+    opacity: .4;
+    z-index: 1;
+}
+.navbar::after {
+    content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+a {
+    text-decoration: none;
+}
+.navbar-logo {
+    background-color: black;
+    color: white; 
+    border-width: 1px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    padding-right: 2px;
+    margin-left: 130px;
+/*    leave floating for text wrapping? float: left;*/
+    position: relative;
+    left:2rem;
+    width: 9rem;
+    cursor: pointer;
+}
+.highlight {
+    color: blue;
+    background-color: #f9f6f6;
+}
+
+.navbar-link  {
+    text-decoration: none;
+    
+/*    pos solution */   
+/*    margin-right: 10px;*/
+    
+/*    table solution */    
+    
+/*    how can i make this shorter?*/
+/*    in ex: height is 100 % b/c background is uniform*/
+     display: table-cell;
+     position: relative;
+     padding-left: .5rem;
+     padding-right: .5rem;
+     vertical-align: middle;
+     color: black;
+     font-size: 0.91rem;
+     letter-spacing: 0.05rem;
+     font-weight: 700;
+     text-decoration: none;
+     cursor: pointer;
+    
+}
+
+.links-container {
+    position: absolute;
+    /*    pos solution */   
+/*
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    margin-right: 80px;
+*/
+    display: table;
+    border-spacing: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+  
+}
+.links-container .navbar-link:hover{
+    color: rgb(233,50,117);
+}
+.links-container .navbar-link:active{
+    background-color: white;
+}
+
+
+.nav-first{
+    color: white;
+    background-color: blue;
+}
+.nav-second{
+    color: offwhite;
+    background-color:aquamarine;
+}
+.nav-third {
+    background-color: yellow;
+}
+
