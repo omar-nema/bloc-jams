@@ -1,0 +1,181 @@
+/*  general styling */
+html {
+    height: 100%;
+    font-size: 100%;
+}
+
+body {
+    background-color: #f9f6f6;
+}
+
+* {font-family: "Consolas";
+    }
+/*  headers Courier Consolas Cousine*/
+h1, h2, h3, h4, h5 {
+    font-weight: 100; 
+}
+/*  header.. incl nav bar */
+header {
+    width: 85%;
+}
+header::after {
+    content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+  
+}
+.maintitle {
+    background-color: orangered;
+    color: white; 
+    border-width: 1px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    padding-right: 2px;
+    margin-left: 130px;
+    float: left;
+}
+.highlight {
+    color: orangered;
+    background-color: #f9f6f6;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+/*need to position in more robust way*/
+nav {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: px;
+    font-weight: 100;
+    font-size: 22px;
+    float: right;
+    transform: translateY(100%);
+}
+.nav-first{
+    color: white;
+    background-color: blue;
+}
+.nav-second{
+    color: offwhite;
+    background-color:aquamarine;
+}
+.nav-third {
+    background-color: yellow;
+}
+
+
+/*  rectangle separators */
+.rectclass {
+    margin-left: 0px;
+    width: 100%;
+/*    display: inline-block;*/
+    clear: both;
+}
+.rectangle {
+    height: 2px;
+    background-color: lightgrey;
+    margin-left: 50px;
+    margin-right: 50px;    
+}
+.rectangle2 {
+    height: 2px;
+    background-color: aqua;
+    margin-left: 50px;
+    margin-right: 50px;  
+}
+
+
+/*  content */
+
+.underline {
+    height: 3px;
+    width: 80px;
+    margin-top: 0px;
+    margin: 0px;
+    display: inline-block;
+}
+.allpoints {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+.point {
+    position: relative;
+    padding: 2rem;
+}
+.point .point-title {
+    font-size: 1.25rem;
+}
+.ion-music-note,
+ .ion-radio-waves,
+ .ion-iphone {
+     color: rgb(233,50,117);
+     font-size: 2rem;
+ }
+.ion-iphone {
+    margin-top: 30px;
+}
+
+
+/*  footer containing images and centered text */
+footer img {
+    align-content: center;
+    margin-top: 0px;
+    margin-left: 25em;
+    margin-right: 25em;
+    opacity: 0.6;
+    max-height: 100px;
+}
+.hero .hero-title {
+    position: absolute;
+    top: 40%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .5rem;
+    text-shadow: 1px 1px 0px rgb(58,23,63);
+}
+.logo{
+    opacity: 1;
+    margin: auto;
+}
+/*
+footer {
+    margin-top: 200px;
+    margin-left: 50px;
+    margin-right: 100px;
+
+}
+*/
+/*why can i only set margins from footer?*/
+.hero {
+    margin-top: 600px;
+    position: relative;
+    min-height: 150px;
+    max-height: 200px;
+    width: 70%;
+    
+    margin-left: auto;
+    margin-right: auto;
+
+    background-image: url(../assets/images/bloc_jams_bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.5;
+}
+
+
+
+
+
+
