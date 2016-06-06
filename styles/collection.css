@@ -33,6 +33,8 @@ body.collection {
 
 /*don't quite understand this width: 100% fixing sizing'*/
 .collection-album-container img {
-   width: 80%;
+   width: 80%; 
 }
+
+
 

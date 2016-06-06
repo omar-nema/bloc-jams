@@ -35,6 +35,10 @@
     max-width: 64rem;
 }
 
+.container.narrow{
+    max-width: 56rem;
+}
+
 .clearfix::before,
 .clearfix::after {
    content: " ";
@@ -51,7 +55,7 @@ html {
     font-size: 100%;
 }
 
-body {
+.mainbody {
     background-color: #f9f6f6;
 }
 
