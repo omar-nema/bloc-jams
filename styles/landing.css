@@ -40,6 +40,20 @@
 .point {
     position: relative;
     padding: 2rem;
+    opacity: 0;
+    -webkit-transform: scaleX(0.9) translateY(3rem);
+    -moz-transform: scaleX translateY(3em);
+    transform: scaleX(0.9) translateY(3rem);
+    transform: rotate(180deg);
+    
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    transition: all 2s ease-in-out;
+    
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+    transition-delay: 1s;
+    
 }
 .point .point-title {
     font-size: 1.25rem;
