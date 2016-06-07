@@ -1,10 +1,7 @@
 
 
 var currToggle = 1;
-
 window.onload = function(){
-    console.log('load');
-    
     var albumToggle = [albumPicasso,  albumSecond,  albumThird];
     setCurrentAlbum(albumToggle[0]);
     
@@ -21,27 +18,52 @@ window.onload = function(){
     
     var songRows = document.getElementsByClassName('album-view-song-item');
     
-    var playButton = '<a class="album-song-button"><span class="ion-play"></span></a>';
+    var playButton = '<a class="album-song-button play"><span class="ion-play"></span></a>';
+    var pauseButton = '<a class="album-song-button pause"><span class="ion-pause"></span></a>';
     
-    table.addEventListener('mouseover', function(event){
-     
+    
+    //findParentByClassName
+    
+    table.addEventListener('click', function(event){  
+        console.log(event.target);
         
-        var initial = event.target.parentElement.querySelector('.song-item-number').innerHTML;
+        //findparentbyclassname
+        //problem : simply click away
         
-        if (event.target.parentElement.className === 'album-view-song-item'){
-            
-            event.target.parentElement.querySelector('.song-item-number').innerHTML = playButton;
+        if (document.querySelector('.pause') && event.target.className === 'ion-play'){
+            var button = document.querySelector('.pause').parentElement
+            button.innerHTML = button.getAttribute('data-song-number');
+            console.log(button);
+        }    
+        if (event.target.className === 'ion-play' || event.target.className === 'album-song-button-play'){
+            event.target.parentElement.parentElement.innerHTML = pauseButton;
         }
-  
+        if (event.target.className === 'ion-pause' || event.target.className === 'album-song-button-pause'){  
+            event.target.parentElement.parentElement.innerHTML = playButton;
+        }
+    });
+        
+    table.addEventListener('mouseover', function(event){   
+        if (event.target.parentElement.className === 'album-view-song-item'){  
+            //if not played
+            
+            if (!event.target.parentElement.querySelector('.song-item-number').querySelector('.album-song-button.pause')){
+                event.target.parentElement.querySelector('.song-item-number').innerHTML = playButton;            
+            }
 
+        }
     });
     
     for (var i=0; i<songRows.length; i++){
         songRows[i].addEventListener('mouseleave', function(event){
-            this.children[0].innerHTML = this.children[0].getAttribute('data-song-number')
+
+            if (!this.querySelector('.pause')){
+               this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+            }
+         
         });
     }
-    
+  
 };
 
 
@@ -89,9 +111,6 @@ var albumThird = {
     ]   
 };
 
-//var collectionItemTemplate = 
-//'<div class="collection-album-container column fourth"> ' + '<img src="assets/images/album_covers/01.png">' + '' + '<div class="collection-album-info caption">' + '<p>'+ '<a class="album-name" href="album.html">The Colors</a>' + '<br/>' + '<a href="/album.html">Pablo Picasso</a>' + '<br/>' + ' X songs' + '<br/>' + '</p>' + '</div>' + '</div>';
-
 var createSongRow = function(songNumber, songName, songLength){
     var temp = '<tr class="album-view-song-item">' + '<td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>' + '<td class="song-item-title">' +  songName+ '</td>' + '</td>' + '<td class="song-item-duration">' +  songLength + '</td>' 
     return temp;   
@@ -114,40 +133,25 @@ var setCurrentAlbum = function(album){
     for (var i=0; i<album.songs.length; i++){
          albumSongList.innerHTML += createSongRow(i+1,album.songs[i].title,album.songs[i].duration);
     };
-
 }
 
 
+   var findParentByClassName = function(element, targetClass){
+        var parent = target.parentElement;
+        while (parent.className != targetClass && parent.className !== null){
+            parent = parent.parentElement;
+        }
+        return parent;
+    };
 
-//var collectionItemTemplate = 
-//'<div class="collection-album-container column fourth"> ' + '<img src="assets/images/album_covers/01.png">' + '' + '<div class="collection-album-info caption">' + '<p>'+ '<a class="album-name" href="album.html">The Colors</a>' + '<br/>' + '<a href="/album.html">Pablo Picasso</a>' + '<br/>' + ' X songs' + '<br/>' + '</p>' + '</div>' + '</div>';
+//  switch getSongItem = function(element){
+//      case 1:
+//      break;
+//      
+//      case 2:
+//      break;
+//      
+//      default:
+//        
+//  }
 
-
-//albums.songs[i].duration
-
-
-//                <tr class="album-view-song-item">
-//                    <td class="song-item-number">1</td>
-//                    <td class="song-item-title">Blue</td>
-//                    <td class="song-item-duration">X:XX</td>
-//                </tr>
-//                <tr class="album-view-song-item">
-//                    <td class="song-item-number">2</td>
-//                    <td class="song-item-title">Red</td>
-//                    <td class="song-item-duration">X:XX</td>
-//                </tr>
-//                <tr class="album-view-song-item">
-//                    <td class="song-item-number">3</td>
-//                    <td class="song-item-title">Green</td>
-//                    <td class="song-item-duration">X:XX</td>
-//                </tr>
-//                <tr class="album-view-song-item">
-//                    <td class="song-item-number">4</td>
-//                    <td class="song-item-title">Purple</td>
-//                    <td class="song-item-duration">X:XX</td>
-//                </tr>
-//                <tr class="album-view-song-item">
-//                    <td class="song-item-number">5</td>
-//                    <td class="song-item-title">Black</td>
-//                    <td class="song-item-duration">X:XX</td>
-//                </tr>                

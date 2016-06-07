@@ -23,18 +23,13 @@
     display: inline-block;
     width: 28px;
     height: 28px;
-};
+}
 
 .album-song-button:hover {
     cursor: pointer;
     color: white;
     background-color: rgb(210, 40, 123);
 }
-
-.album-song-button played {
-    
-}
-
 
 
 .album-song-button span {
