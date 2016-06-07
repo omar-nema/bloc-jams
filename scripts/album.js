@@ -17,6 +17,31 @@ window.onload = function(){
   
     });
     
+    var table = document.getElementsByClassName('album-view-song-list')[0];
+    
+    var songRows = document.getElementsByClassName('album-view-song-item');
+    
+    var playButton = '<a class="album-song-button"><span class="ion-play"></span></a>';
+    
+    table.addEventListener('mouseover', function(event){
+     
+        
+        var initial = event.target.parentElement.querySelector('.song-item-number').innerHTML;
+        
+        if (event.target.parentElement.className === 'album-view-song-item'){
+            
+            event.target.parentElement.querySelector('.song-item-number').innerHTML = playButton;
+        }
+  
+
+    });
+    
+    for (var i=0; i<songRows.length; i++){
+        songRows[i].addEventListener('mouseleave', function(event){
+            this.children[0].innerHTML = this.children[0].getAttribute('data-song-number')
+        });
+    }
+    
 };
 
 
@@ -68,7 +93,7 @@ var albumThird = {
 //'<div class="collection-album-container column fourth"> ' + '<img src="assets/images/album_covers/01.png">' + '' + '<div class="collection-album-info caption">' + '<p>'+ '<a class="album-name" href="album.html">The Colors</a>' + '<br/>' + '<a href="/album.html">Pablo Picasso</a>' + '<br/>' + ' X songs' + '<br/>' + '</p>' + '</div>' + '</div>';
 
 var createSongRow = function(songNumber, songName, songLength){
-    var temp = '<tr class="album-view-song-item">' + '<td class="song-item-number">' + songNumber + '</td>' + '<td class="song-item-title">' +  songName+ '</td>' + '</td>' + '<td class="song-item-duration">' +  songLength + '</td>' 
+    var temp = '<tr class="album-view-song-item">' + '<td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>' + '<td class="song-item-title">' +  songName+ '</td>' + '</td>' + '<td class="song-item-duration">' +  songLength + '</td>' 
     return temp;   
 }
 
