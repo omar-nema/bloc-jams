@@ -14,33 +14,37 @@ window.onload = function(){
   
     });
     
+    //my solution does not use getSongItem
+    //instead, a tag with 'pause' or 'play' is added to the button HTML template
+    //only one click event listener is used - in the table. three states are considered: whether a clicked element is already in play mode (pauseInd), if a song is currently selected (currentSong - shows location of song) and if a click occurred in the right palace (findParentElement leads to song-item-number), 
+    
     var table = document.getElementsByClassName('album-view-song-list')[0];
-    
     var songRows = document.getElementsByClassName('album-view-song-item');
-    
     var playButton = '<a class="album-song-button play"><span class="ion-play"></span></a>';
     var pauseButton = '<a class="album-song-button pause"><span class="ion-pause"></span></a>';
-    
-    
-    //findParentByClassName
+    var currentSong = null;
     
     table.addEventListener('click', function(event){  
-        console.log(event.target);
         
-        //findparentbyclassname
-        //problem : simply click away
-        
-        if (document.querySelector('.pause') && event.target.className === 'ion-play'){
-            var button = document.querySelector('.pause').parentElement
-            button.innerHTML = button.getAttribute('data-song-number');
-            console.log(button);
-        }    
-        if (event.target.className === 'ion-play' || event.target.className === 'album-song-button-play'){
-            event.target.parentElement.parentElement.innerHTML = pauseButton;
+        var findParentResult = findParentByClassName(event.target, 'song-item-number');
+        //indicates whether already playing
+        if (findParentResult){
+            var pauseInd = findParentResult.querySelector('.pause');
         }
-        if (event.target.className === 'ion-pause' || event.target.className === 'album-song-button-pause'){  
-            event.target.parentElement.parentElement.innerHTML = playButton;
+        else {
+            pauseInd = null;
         }
+        if  (findParentResult && !pauseInd){
+            findParentResult.innerHTML = pauseButton;
+            if (currentSong){
+                currentSong.innerHTML = currentSong.getAttribute('data-song-number');
+            }
+            currentSong = findParentResult;
+        }
+        else if (findParentResult && pauseInd){
+            findParentResult.innerHTML = playButton;
+            currentSong = null;
+        }       
     });
         
     table.addEventListener('mouseover', function(event){   
@@ -50,7 +54,6 @@ window.onload = function(){
             if (!event.target.parentElement.querySelector('.song-item-number').querySelector('.album-song-button.pause')){
                 event.target.parentElement.querySelector('.song-item-number').innerHTML = playButton;            
             }
-
         }
     });
     
@@ -66,7 +69,61 @@ window.onload = function(){
   
 };
 
+//functions 
+var createSongRow = function(songNumber, songName, songLength){
+    var temp = '<tr class="album-view-song-item">' + '<td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>' + '<td class="song-item-title">' +  songName+ '</td>' + '</td>' + '<td class="song-item-duration">' +  songLength + '</td>' 
+    return temp;   
+}
 
+var setCurrentAlbum = function(album){
+    var albumTitle = document.getElementsByClassName('album-view-title')[0];
+    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+    var albumReleaseInfo =  document.getElementsByClassName('album-view-release-info')[0];
+    var albumImage = document.getElementsByClassName('album-cover-art')[0];
+    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+    albumTitle.textContent = album.title;
+    albumArtist.textContent = album.artist;
+    albumReleaseInfo.textContent = album.year + ' ' + album.label;
+    albumImage.setAttribute('src', album.albumArtUrl);
+    albumSongList.innerHTML = '';
+    for (var i=0; i<album.songs.length; i++){
+         albumSongList.innerHTML += createSongRow(i+1,album.songs[i].title,album.songs[i].duration);
+    };
+}
+
+var findParentByClassName = function(element, targetClass){
+        var currparent = element.parentElement;
+        while (currparent.className !== null && currparent.className != targetClass){   
+            if(currparent.parentElement == null){
+                return null;
+            }
+            else {
+               currparent = currparent.parentElement;    
+            }  
+        }
+        return currparent;
+    };
+
+var getSongItem = function(element){
+      switch (element.className){
+      case 'album-song-button':
+      case 'ion-play':
+      case 'ion-pause':
+        return findParentByClassName(element, 'song-item-number');
+      case 'album-view-song-item':
+        return element.querySelector('.song-item-number');
+      case 'album-view-song-title':
+      case 'album-view-song-duration':      
+        return element.parentElement.querySelector('.song-item-number');     
+      case 'song-item-number':
+        return element; 
+      default:
+        return;
+  }
+}
+
+    
+//albums
 var albumPicasso = {
     title: 'The Colors',
     artist: 'Pablo Picasso',
@@ -111,47 +168,5 @@ var albumThird = {
     ]   
 };
 
-var createSongRow = function(songNumber, songName, songLength){
-    var temp = '<tr class="album-view-song-item">' + '<td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>' + '<td class="song-item-title">' +  songName+ '</td>' + '</td>' + '<td class="song-item-duration">' +  songLength + '</td>' 
-    return temp;   
-}
 
-var setCurrentAlbum = function(album){
-    
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo =  document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
-    
-    albumTitle.textContent = album.title;
-    albumArtist.textContent = album.artist;
-    albumReleaseInfo.textContent = album.year + ' ' + album.label;
-    albumImage.setAttribute('src', album.albumArtUrl);
-    
-    albumSongList.innerHTML = '';
-    for (var i=0; i<album.songs.length; i++){
-         albumSongList.innerHTML += createSongRow(i+1,album.songs[i].title,album.songs[i].duration);
-    };
-}
-
-
-   var findParentByClassName = function(element, targetClass){
-        var parent = target.parentElement;
-        while (parent.className != targetClass && parent.className !== null){
-            parent = parent.parentElement;
-        }
-        return parent;
-    };
-
-//  switch getSongItem = function(element){
-//      case 1:
-//      break;
-//      
-//      case 2:
-//      break;
-//      
-//      default:
-//        
-//  }
 
