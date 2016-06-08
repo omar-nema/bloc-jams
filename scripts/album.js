@@ -181,33 +181,3 @@ var albumThird = {
         {title: '5', duration: '5:26' }
     ]   
 };
-
-
-
-
-
-//    table.addEventListener('click', function(event){  
-//        
-//        var findParentResult = findParentByClassName(event.target, 'song-item-number');
-//        //indicates whether already playing
-//        if (findParentResult){
-//            var pauseInd = findParentResult.querySelector('.pause');
-//        }
-//        else {
-//            pauseInd = null;
-//        }
-//        if  (findParentResult && !pauseInd){
-//            findParentResult.innerHTML = pauseButton;
-//            if (currentSong){
-//                currentSong.innerHTML = currentSong.getAttribute('data-song-number');
-//            }
-//            currentSong = findParentResult;
-//        }
-//        else if (findParentResult && pauseInd){
-//            findParentResult.innerHTML = playButton;
-//            currentSong = null;
-//        }       
-//    });
-    
-    //findParentByClassName(event.target, 'song-item-number'
-//    .innerHTML = this.children[0].getAttribute('data-song-number')
