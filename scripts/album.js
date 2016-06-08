@@ -27,6 +27,8 @@ var createSongRow = function(songNumber, songName, songLength){
     return $row;
 }
 
+//how did previous clickHandler work? can you attach a click handler in the createSongRow function? wouldn't have worked because this would have been a simple string? but jQuery can work with theoretical object?
+
 var setCurrentAlbum = function(album){
     var $albumTitle = $('.album-view-title');
     var $albumArtist = $('.album-view-artist');
@@ -60,6 +62,11 @@ var offHover = function(){
         $songItem.html($songItem.attr('data-song-number'));
     }; 
 };
+
+//we can't just select downward from document on a click event, we're looking for specifically anything in or below table-number class
+//multiple depths to selection, but we need to add only to parent selection
+//select each song row and add event listener
+//now can be added when album is added
 
 var clickHandler = function(){
     var songNumber = $(this).attr('data-song-number')
