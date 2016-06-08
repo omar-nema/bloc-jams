@@ -20,7 +20,7 @@ window.onload = function(){
     
     table.addEventListener('mouseover', function(event){
         //ONLY hover if we are above song-item-number in DOM
-        console.log(event.target);
+   
         if (event.target.parentElement.querySelector('.song-item-number')){
                  hoverHandler(event.target);       
         }
@@ -31,8 +31,7 @@ window.onload = function(){
         songRows[i].addEventListener('mouseleave', function(event){            
             exitHandler(event.target);              
         });
-        
-        songRows[i].addEventListener('click', function(event){
+        songRows[i].querySelector('.song-item-number').addEventListener('click', function(event){
             clickHandler(event.target);
         });
     }
@@ -73,14 +72,12 @@ var hoverHandler = function(targetElement){
     if (currentSong !== songItem){
         songItem.innerHTML = playButton;
     }
-    else {
-        console.log('wrk');
-    }
+
 };
 
 var clickHandler = function(targetElement){
     var songItem = getSongItem(targetElement);
-    console.log('cl');
+
     if (currentSong == null){
         songItem.innerHTML = pauseButton;
         currentSong = songItem;
