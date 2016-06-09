@@ -22,9 +22,13 @@ $(document).ready(function(){
         var albumToggle = [albumPicasso,  albumSecond,  albumThird];
         setCurrentAlbum(albumToggle[0]);
 
-        $('.control-group.main-controls .play-pause').click(playHandler);
-        $('.control-group.main-controls .next').click(nextHandler);     
-        $('.control-group.main-controls .previous').click(prevHandler);           
+//        $('.control-group.main-controls .play-pause').click(playHandler);
+//        $('.control-group.main-controls .next').click(nextHandler);     
+//        $('.control-group.main-controls .previous').click(prevHandler);     
+        
+        $('.control-group.main-controls .play-pause').click(function(){playHandler()});
+        $('.control-group.main-controls .next').click(function(){nextHandler()});     
+        $('.control-group.main-controls .previous').click(function(){prevHandler()});     
         
         $('.album-cover-art').click(function(event){
     //    ('click', function(event){
@@ -62,8 +66,7 @@ $(document).ready(function(){
         };
         $('.control-group.currently-playing .artist-name').text(currentAlbum.artist);
         $('.control-group.currently-playing .song-name').text('');
-    }
-    
+    };
 
     var onHover = function(){
         var $songItem = $(this).find('.song-item-number');
@@ -100,6 +103,26 @@ $(document).ready(function(){
             newHandler();  
         };
     };
+    
+//    var wrapper = function(arg1, arg2){
+//        
+//    }
+    
+
+    var genHandler = function(num){
+        if (currentSongNumber){
+        newNum = num+ +currentSongNumber;
+            
+        if (newNum > 5){
+            newNum = 1;
+        }
+            
+        var nextSong = getNumberCell(newNum);
+        var newHandler = clickHandler.bind(nextSong);
+        newHandler();                
+        };
+    };
+    
     var nextHandler = function(){
         if (currentSongNumber){
             newNum = 1+ +currentSongNumber;
@@ -122,6 +145,7 @@ $(document).ready(function(){
             newHandler();     
         }
     };
+    
     var clickHandler = function(){
         var songNumber = $(this).attr('data-song-number');
         
