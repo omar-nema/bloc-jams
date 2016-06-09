@@ -21,17 +21,12 @@ $(document).ready(function(){
     $(window).load(function(){
         var albumToggle = [albumPicasso,  albumSecond,  albumThird];
         setCurrentAlbum(albumToggle[0]);
-
-//        $('.control-group.main-controls .play-pause').click(playHandler);
-//        $('.control-group.main-controls .next').click(nextHandler);     
-//        $('.control-group.main-controls .previous').click(prevHandler);     
-        
-        $('.control-group.main-controls .play-pause').click(function(){playHandler()});
-        $('.control-group.main-controls .next').click(function(){nextHandler()});     
-        $('.control-group.main-controls .previous').click(function(){prevHandler()});     
+         
+        $('.control-group.main-controls .play-pause').click(function(){genHandler(0)});
+        $('.control-group.main-controls .next').click(function(){genHandler(1)});     
+        $('.control-group.main-controls .previous').click(function(){genHandler(-1)});     
         
         $('.album-cover-art').click(function(event){
-    //    ('click', function(event){
             if (currToggle == albumToggle.length){
                 currToggle = 0;
             }
@@ -68,6 +63,7 @@ $(document).ready(function(){
         $('.control-group.currently-playing .song-name').text('');
     };
 
+    //EVENT HANDLERS - gen used for control bar, clickHandler used for table
     var onHover = function(){
         var $songItem = $(this).find('.song-item-number');
         var $songNumber = $songItem.attr('data-song-number');
@@ -89,63 +85,20 @@ $(document).ready(function(){
             $songItem.html($songItem.attr('data-song-number'));
         };
     };
-    var updatePlayerBar = function(button){
-        $('.control-group.currently-playing .song-name').text(currentSongFromAlbum.title);
-        $('.control-group.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + currentAlbum.artist);
-        if (button){
-            $('.play-pause').html(button);
-        };
-    };
-    var playHandler = function(){
+    var genHandler = function(num){      
         if (currentSongNumber){
-            var currsong = getNumberCell(currentSongNumber);
-            var newHandler = clickHandler.bind(currsong);
-            newHandler();  
-        };
-    };
-    
-//    var wrapper = function(arg1, arg2){
-//        
-//    }
-    
-
-    var genHandler = function(num){
-        if (currentSongNumber){
-        newNum = num+ +currentSongNumber;
-            
+        newNum = parseInt(num)+parseInt(currentSongNumber);
         if (newNum > 5){
             newNum = 1;
-        }
-            
+        }       
+        else if (newNum < 1){
+            newNum = 5;
+        }  
         var nextSong = getNumberCell(newNum);
         var newHandler = clickHandler.bind(nextSong);
         newHandler();                
         };
     };
-    
-    var nextHandler = function(){
-        if (currentSongNumber){
-            newNum = 1+ +currentSongNumber;
-            if (newNum > 5){
-                newNum = 1;
-            }
-            var nextSong = getNumberCell(newNum);
-            var newHandler = clickHandler.bind(nextSong);
-            newHandler();                
-        };
-    };
-    var prevHandler = function(){
-        if (currentSongNumber){
-            newNum = +currentSongNumber-1;
-            if (newNum < 1){
-                newNum = 5;
-            }
-            var prevSong = getNumberCell(newNum);            
-            var newHandler = clickHandler.bind(prevSong);
-            newHandler();     
-        }
-    };
-    
     var clickHandler = function(){
         var songNumber = $(this).attr('data-song-number');
         
@@ -171,14 +124,23 @@ $(document).ready(function(){
         } 
     };  
     
-        var getNumberCell = function(number){
-            return $('.song-item-number[data-song-number="' + number + '"]');
+    //HELPER METHODS
+    var updatePlayerBar = function(button){
+        $('.control-group.currently-playing .song-name').text(currentSongFromAlbum.title);
+        $('.control-group.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + currentAlbum.artist);
+        if (button){
+            $('.play-pause').html(button);
         };
+    };
+    
+    var getNumberCell = function(number){
+        return $('.song-item-number[data-song-number="' + number + '"]');
+    };
     //really unnecessary, but following instructions with this method    
-        var setSong= function(songnum){
-          currentSongNumber = songnum;
-          currentSongFromAlbum = songnum;
-        };
+    var setSong= function(songnum){
+      currentSongNumber = songnum;
+      currentSongFromAlbum = songnum;
+    };
     
 });    
 
