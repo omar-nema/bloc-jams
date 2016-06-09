@@ -1,95 +1,95 @@
-var currToggle = 1;
-var playButton = '<a class="album-song-button play"><span class="ion-play"></span></a>';
-var pauseButton = '<a class="album-song-button pause"><span class="ion-pause"></span></a>';
-var currentSong = null;
+//var currToggle = 1;
+//var playButton = '<a class="album-song-button play"><span class="ion-play"></span></a>';
+//var pauseButton = '<a class="album-song-button pause"><span class="ion-pause"></span></a>';
+//var currentSongNumber = null;
     
-$(window).load(function(){
-    var albumToggle = [albumPicasso,  albumSecond,  albumThird];
-    setCurrentAlbum(albumToggle[0]);
-    document.getElementsByClassName('album-cover-art')[0].addEventListener
-    
-    $('.album-cover-art').click(function(event){
-//    ('click', function(event){
-        if (currToggle == albumToggle.length){
-            currToggle = 0;
-        }
-        setCurrentAlbum(albumToggle[currToggle]);
-        currToggle = currToggle + 1;
-    });
-   var songRows = $('.album-view-song-item');
-});
-
-var createSongRow = function(songNumber, songName, songLength){
-    var temp = '<tr class="album-view-song-item">' + '<td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>' + '<td class="song-item-title">' +  songName+ '</td>' + '</td>' + '<td class="song-item-duration">' +  songLength + '</td>' 
-    var $row = $(temp);   
-    $row.find('.song-item-number').click(clickHandler);
-    $row.hover(onHover, offHover);
-    return $row;
-}
-
-//how did previous clickHandler work? can you attach a click handler in the createSongRow function? wouldn't have worked because this would have been a simple string? but jQuery can work with theoretical object?
-
-var setCurrentAlbum = function(album){
-    var $albumTitle = $('.album-view-title');
-    var $albumArtist = $('.album-view-artist');
-    var $albumReleaseInfo =  $('.album-view-release-info');
-    var $albumImage = $('.album-cover-art');
-    var $albumSongList = $('.album-view-song-list');
-    $albumTitle.text = album.title;
-    $albumArtist.text = album.artist;
-    $albumReleaseInfo.text = album.year + ' ' + album.label;
-    $albumImage.attr('src', album.albumArtUrl);
-    $albumSongList.empty();
-    for (var i=0; i<album.songs.length; i++){
-       $albumSongList.append (createSongRow(i+1,album.songs[i].title,album.songs[i].duration));
-    };
-}
-
-var onHover = function(){
-    var $songItem = $(this).find('.song-item-number');
-    var $songNumber = $songItem.attr('data-song-number')
-    if (currentSong !== $songNumber){
-        $songItem.empty();
-        $songItem.html(playButton);
-    } 
-};
-
-var offHover = function(){
-    var $songItem = $(this).find('.song-item-number');
-    var $songNumber = $songItem.attr('data-song-number')
-    if (currentSong !== $songNumber){
-        $songItem.empty();
-        $songItem.html($songItem.attr('data-song-number'));
-    }; 
-};
-
-//we can't just select downward from document on a click event, we're looking for specifically anything in or below table-number class
-//multiple depths to selection, but we need to add only to parent selection
-//select each song row and add event listener
-//now can be added when album is added
-
-var clickHandler = function(){
-    var songNumber = $(this).attr('data-song-number')
-    //how does this handle going both up and down?
-    
-    if (currentSong == null){
-        $(this).empty();
-        $(this).html(pauseButton);
-        currentSong = songNumber;
-    } else if (currentSong === songNumber){
-        $(this).empty();
-        $(this).html(playButton);
-        currentSong = null;
-    } else if (currentSong !== songNumber){
-        //get element with certain attribute and empty
-        var otherSong = $('.song-item-number[data-song-number="' + currentSong + '"]');
-        otherSong.empty();
-        otherSong.html(currentSong);
-        $(this).empty();
-        $(this).html(pauseButton);
-        currentSong = songNumber;
-    }
-};
+//$(window).load(function(){
+//    var albumToggle = [albumPicasso,  albumSecond,  albumThird];
+//    setCurrentAlbum(albumToggle[0]);
+//    document.getElementsByClassName('album-cover-art')[0].addEventListener
+//    
+//    $('.album-cover-art').click(function(event){
+////    ('click', function(event){
+//        if (currToggle == albumToggle.length){
+//            currToggle = 0;
+//        }
+//        setCurrentAlbum(albumToggle[currToggle]);
+//        currToggle = currToggle + 1;
+//    });
+//   var songRows = $('.album-view-song-item');
+//});
+//
+//var createSongRow = function(songNumber, songName, songLength){
+//    var temp = '<tr class="album-view-song-item">' + '<td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>' + '<td class="song-item-title">' +  songName+ '</td>' + '</td>' + '<td class="song-item-duration">' +  songLength + '</td>' 
+//    var $row = $(temp);   
+//    $row.find('.song-item-number').click(clickHandler);
+//    $row.hover(onHover, offHover);
+//    return $row;
+//}
+//
+////how did previous clickHandler work? can you attach a click handler in the createSongRow function? wouldn't have worked because this would have been a simple string? but jQuery can work with theoretical object?
+//
+//var setCurrentAlbum = function(album){
+//    var $albumTitle = $('.album-view-title');
+//    var $albumArtist = $('.album-view-artist');
+//    var $albumReleaseInfo =  $('.album-view-release-info');
+//    var $albumImage = $('.album-cover-art');
+//    var $albumSongList = $('.album-view-song-list');
+//    $albumTitle.text = album.title;
+//    $albumArtist.text = album.artist;
+//    $albumReleaseInfo.text = album.year + ' ' + album.label;
+//    $albumImage.attr('src', album.albumArtUrl);
+//    $albumSongList.empty();
+//    for (var i=0; i<album.songs.length; i++){
+//       $albumSongList.append (createSongRow(i+1,album.songs[i].title,album.songs[i].duration));
+//    };
+//}
+//
+//var onHover = function(){
+//    var $songItem = $(this).find('.song-item-number');
+//    var $songNumber = $songItem.attr('data-song-number')
+//    if (currentSongNumber !== $songNumber){
+//        $songItem.empty();
+//        $songItem.html(playButton);
+//    } 
+//};
+//
+//var offHover = function(){
+//    var $songItem = $(this).find('.song-item-number');
+//    var $songNumber = $songItem.attr('data-song-number')
+//    if (currentSongNumber !== $songNumber){
+//        $songItem.empty();
+//        $songItem.html($songItem.attr('data-song-number'));
+//    }; 
+//};
+//
+////we can't just select downward from document on a click event, we're looking for specifically anything in or below table-number class
+////multiple depths to selection, but we need to add only to parent selection
+////select each song row and add event listener
+////now can be added when album is added
+//
+//var clickHandler = function(){
+//    var songNumber = $(this).attr('data-song-number')
+//    //how does this handle going both up and down?
+//    
+//    if (currentSongNumber == null){
+//        $(this).empty();
+//        $(this).html(pauseButton);
+//        currentSongNumber = songNumber;
+//    } else if (currentSongNumber === songNumber){
+//        $(this).empty();
+//        $(this).html(playButton);
+//        currentSongNumber = null;
+//    } else if (currentSongNumber !== songNumber){
+//        //get element with certain attribute and empty
+//        var otherSong = $('.song-item-number[data-song-number="' + currentSongNumber + '"]');
+//        otherSong.empty();
+//        otherSong.html(currentSongNumber);
+//        $(this).empty();
+//        $(this).html(pauseButton);
+//        currentSongNumber = songNumber;
+//    }
+//};
 
 //albums
 var albumPicasso = {
