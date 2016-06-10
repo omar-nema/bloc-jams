@@ -10,6 +10,8 @@ var currentSongNumber = null;
 var currentAlbum = null;
 var currentSongFromAlbum = null;
 
+var currentSoundFile = null;
+
 //Variable below is used to handle one edge case: when a song is paused with the control bar, its play button continues to linger. 
 
 //This happens because I am using the pre-existing clickHandler methods (the same one used to handle clicks within the table) for the control bar. Within the table, our mouseLeave function handle this case and removes the lingering play button. When the control-bar is used however, mouseLeave is never triggered and the play button stays.
@@ -66,8 +68,9 @@ $(document).ready(function(){
     //EVENT HANDLERS - gen used for control bar, clickHandler used for table
     var onHover = function(){
         var $songItem = $(this).find('.song-item-number');
-        var $songNumber = $songItem.attr('data-song-number');
+        var $songNumber = parseInt($songItem.attr('data-song-number'));
         //edgeCase handling
+        currentSongNumber = parseInt(currentSongNumber);
         if (!currentSongNumber && lastPlayedSong){
             getNumberCell(lastPlayedSong).html(lastPlayedSong);
             
@@ -79,10 +82,11 @@ $(document).ready(function(){
     };
     var offHover = function(){
         var $songItem = $(this).find('.song-item-number');
-        var $songNumber = $songItem.attr('data-song-number')
+        var $songNumber = parseInt($songItem.attr('data-song-number'));
         if (currentSongNumber !== $songNumber){
             $songItem.empty();
-            $songItem.html($songItem.attr('data-song-number'));
+            //$songItem.html(parseInt($songItem.attr('data-song-number')));
+            $songItem.html($songNumber);         
         };
     };
     var genHandler = function(num){      
@@ -96,12 +100,13 @@ $(document).ready(function(){
         }  
         var nextSong = getNumberCell(newNum);
         var newHandler = clickHandler.bind(nextSong);
+        //function that relies on this and not parameters, so we have to bind
         newHandler();                
         };
     };
     var clickHandler = function(){
-        var songNumber = $(this).attr('data-song-number');
-        
+        var songNumber = parseInt($(this).attr('data-song-number'));
+        currentSongNumber = parseInt(currentSongNumber);
         if (currentSongNumber !== null){
             var otherSong = getNumberCell(currentSongNumber);
             otherSong.empty();
@@ -110,8 +115,8 @@ $(document).ready(function(){
         if (currentSongNumber !== songNumber){
             $(this).empty();
             $(this).html(pauseButton);
-            currentSongNumber = songNumber;
-            currentSongFromAlbum = currentAlbum.songs[songNumber-1];
+            setSong(parseInt(songNumber));
+            currentSoundFile.play();
             updatePlayerBar(playerPauseButton);
             lastPlayedSong = null;            
         } 
@@ -119,8 +124,12 @@ $(document).ready(function(){
             $(this).empty();
             $(this).html(playButton);
             updatePlayerBar(playerPlayButton);
-            lastPlayedSong = currentSongNumber;
+            lastPlayedSong = parseInt(currentSongNumber);
             setSong(null);
+            currentSoundFile.pause();
+            //check if currentSoundFile is pause - look at btn content?
+                //yes, then start playing song
+                //not, then pause 
         } 
     };  
     
@@ -138,8 +147,21 @@ $(document).ready(function(){
     };
     //really unnecessary, but following instructions with this method    
     var setSong= function(songnum){
-      currentSongNumber = songnum;
-      currentSongFromAlbum = songnum;
+      if (songnum){
+        if (currentSoundFile){
+            currentSoundFile.stop();
+        }
+        currentSongNumber = parseInt(songnum);
+        currentSongFromAlbum = currentAlbum.songs[parseInt(songnum)-1];
+        currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
+            formats: ['mp3'],
+            preload: true
+            });
+      }
+      else {
+        currentSongNumber = parseInt(songnum);
+        currentSongFromAlbum = parseInt(songnum);          
+      }
     };
     
 });    
