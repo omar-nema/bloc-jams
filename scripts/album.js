@@ -5,19 +5,18 @@ var pauseButton = '<a class="album-song-button pause"><span class="ion-pause"></
 
 var playerPlayButton = '<span class="ion-play">'
 var playerPauseButton = '<span class="ion-pause">'
-
 var currentSongNumber = null;
 var currentAlbum = null;
 var currentSongFromAlbum = null;
-
 var currentSoundFile = null;
+var currentVolume = 80;
 
 //Variable below is used to handle one edge case: when a song is paused with the control bar, its play button continues to linger. 
 
 //This happens because I am using the pre-existing clickHandler methods (the same one used to handle clicks within the table) for the control bar. Within the table, our mouseLeave function handle this case and removes the lingering play button. When the control-bar is used however, mouseLeave is never triggered and the play button stays.
 
 //I have included a 'lastPlayedSong' variable that stores the number of a paused song. This way - when a control bar play is clicked, the edge case is dealt with by replacing the .html of the lastPlayedSong with a number in the OnHover method. 
-var lastPlayedSong = null;
+//var lastPlayedSong = null;
 
 $(document).ready(function(){  
     $(window).load(function(){
@@ -71,10 +70,10 @@ $(document).ready(function(){
         var $songNumber = parseInt($songItem.attr('data-song-number'));
         //edgeCase handling
         currentSongNumber = parseInt(currentSongNumber);
-        if (!currentSongNumber && lastPlayedSong){
-            getNumberCell(lastPlayedSong).html(lastPlayedSong);
-            
-        }
+//        if (!currentSongNumber && lastPlayedSong){
+//            getNumberCell(lastPlayedSong).html(lastPlayedSong);
+//            
+//        }
         if (currentSongNumber!== $songNumber){      
             $songItem.empty();
             $songItem.html(playButton);
@@ -118,15 +117,28 @@ $(document).ready(function(){
             setSong(parseInt(songNumber));
             currentSoundFile.play();
             updatePlayerBar(playerPauseButton);
-            lastPlayedSong = null;            
+           // lastPlayedSong = null;            
         } 
         else if (currentSongNumber === songNumber){
             $(this).empty();
             $(this).html(playButton);
             updatePlayerBar(playerPlayButton);
-            lastPlayedSong = parseInt(currentSongNumber);
-            setSong(null);
-            currentSoundFile.pause();
+            //lastPlayedSong = parseInt(currentSongNumber);
+//            setSong(null);
+//            currentSoundFile.pause();
+
+            if ( currentSoundFile.isPaused() ){
+                $(this).empty();
+                $(this).html(pauseButton);
+                currentSoundFile.play();
+                updatePlayerBar(playerPauseButton);
+            }
+            else {
+                currentSoundFile.pause();
+                $(this).empty();
+                $(this).html(playButton);  
+                updatePlayerBar(playerPlayButton);                
+            }
             //check if currentSoundFile is pause - look at btn content?
                 //yes, then start playing song
                 //not, then pause 
@@ -145,8 +157,14 @@ $(document).ready(function(){
     var getNumberCell = function(number){
         return $('.song-item-number[data-song-number="' + number + '"]');
     };
-    //really unnecessary, but following instructions with this method    
-    var setSong= function(songnum){
+    
+    var setVolume = function(val){
+        if (currentSoundFile){
+            currentSoundFile.setVolume(val);
+        }
+    };
+    
+    var setSong = function(songnum){
       if (songnum){
         if (currentSoundFile){
             currentSoundFile.stop();
@@ -157,6 +175,7 @@ $(document).ready(function(){
             formats: ['mp3'],
             preload: true
             });
+        setVolume(currentVolume);  
       }
       else {
         currentSongNumber = parseInt(songnum);
