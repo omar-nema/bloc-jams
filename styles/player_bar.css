@@ -76,18 +76,21 @@
 }
 .seek-bar {
     height: .25rem;
-    width: 100%;
+/*    width: 100%;*/
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     position: relative;
     cursor: pointer;
     
 }
+.player-bar .volume .seek-bar {
+    width: 60%
+}
 .volume .seek-bar .fill {
     position: absolute;
     height: 100%;
     background-color: white;
-    width: 80%;
+/*    width: 80%;*/
     top: 0rem;
     border-radius: 10px;
 }
@@ -96,7 +99,7 @@
     position: absolute;
     height: 100%;
     background-color: white;
-    width: 80%;
+    width: 0%;
     top: 0rem;
     border-radius: 10px;
 }
@@ -106,31 +109,34 @@
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 100%;
-    left: 80%;
+    left: 0%;
     top: -50%;
 /*    margin-top: -.25rem;*/
     -webkit-transition: all 100ms ease-in-out;
     -moz-transition: all 100ms ease-in-out;
-    transition: all 100ms ease-in-out;
+    transition: width 100ms ease-in-out, height 100ms ease-in-out, margin-top 100ms ease-in-out, margin-left 100ms ease-in-out;
 }
 
 .seek-bar:hover .thumb {
     width: 1rem;
     height: 1rem;
     margin-top: -0.25rem;
-    margin-left: -.25rem;
+/*    margin-left: -.25rem;*/
 }
 
 
 .seek-control .current-time, .total-time{
-    position:absolute;
+/*    position:absolute;*/
+    display: inline-block;
     font-size: .3rem;
 }
 .seek-control .current-time {
     top: 0.5rem;
+/*    left: 10px;*/
+    padding-right: 70%;
 }
 .seek-control .total-time {
-    left: 21.5rem;
+/*    left: 21.5rem;*/
     top: 0.5rem;
 }
 
@@ -157,8 +163,10 @@
 
 .player-bar .volume .seek-bar {
     display: inline-block;
-/*    float: left;*/
+/*
+    float: left;
     width: 100%;
+*/
     vertical-align: middle;
 }
 
